@@ -6,7 +6,7 @@ class Calclator {
     this.currentOperandTextElement = currentOperandTextElement;
 
     this.clear()
-    
+
   }
 
   // defining the varius operation functions
@@ -19,7 +19,7 @@ class Calclator {
 
   }
   appendNumber(number) {
-
+    this.currentOperand = this.currentOperand.toString() + number.toString()
   }
   chooseOperation(operation) {
 
@@ -28,7 +28,7 @@ class Calclator {
 
   }
   updateDisplay() {
-
+    this.currentOperandTextElement.innerText = this.currentOperand
   }
 }
 
@@ -41,3 +41,13 @@ const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
+
+// Hooking up the const and making them work on our calculator object
+const calculator = new Calclator(previousOperandTextElement, currentOperandTextElement);
+
+numberButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    calculator.appendNumber(button.innerText)
+    calculator.updateDisplay()
+  })
+})
