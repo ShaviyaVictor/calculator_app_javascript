@@ -1,5 +1,5 @@
 // create a calculator class to hold our inputs
-class Calclator {
+class Calculator {
   // create the class constructor
   constructor(previousOperandTextElement, currentOperandTextElement) {
     this.previousOperandTextElement = previousOperandTextElement;
@@ -15,22 +15,35 @@ class Calclator {
     this.previousOperand = ''
     this.operation = undefined
   }
+
   delete() {
 
   }
+
   appendNumber(number) {
     if (number === '.' && this.currentOperand.includes('.')) 
-    return
+      return
     this.currentOperand = this.currentOperand.toString() + number.toString()
   }
-  chooseOperation(operation) {
 
+  chooseOperation(operation) {
+    if (this.currentOperand == '')
+      return
+    if (this.previousOperand !== '') {
+      this.compute()
+    }
+    this.operation = operation;
+    this.previousOperand = this.currentOperand;
+    this.currentOperand = '';
   }
+
   compute() {
 
   }
+  
   updateDisplay() {
     this.currentOperandTextElement.innerText = this.currentOperand
+    this.previousOperandTextElement.innerText = this.previousOperand
   }
 }
 
@@ -45,11 +58,18 @@ const previousOperandTextElement = document.querySelector('[data-previous-operan
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
 
 // Hooking up the const and making them work on our calculator object
-const calculator = new Calclator(previousOperandTextElement, currentOperandTextElement);
+const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
 
 numberButtons.forEach(button => {
   button.addEventListener('click', () => {
     calculator.appendNumber(button.innerText)
+    calculator.updateDisplay()
+  })
+})
+
+operationButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    calculator.chooseOperation(button.innerText)
     calculator.updateDisplay()
   })
 })
