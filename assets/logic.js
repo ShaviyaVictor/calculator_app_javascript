@@ -5,6 +5,26 @@ class Calclator {
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
   }
+
+  // defining the varius operation functions
+  clear() {
+    
+  }
+  delete() {
+
+  }
+  appendNumber(number) {
+
+  }
+  chooseOperation(operation) {
+
+  }
+  compute() {
+
+  }
+  updateDisplay() {
+
+  }
 }
 
 // select all the buttons and operands in the html file
