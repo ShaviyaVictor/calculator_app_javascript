@@ -4,11 +4,16 @@ class Calclator {
   constructor(previousOperandTextElement, currentOperandTextElement) {
     this.previousOperandTextElement = previousOperandTextElement;
     this.currentOperandTextElement = currentOperandTextElement;
+
+    this.clear()
+    
   }
 
   // defining the varius operation functions
   clear() {
-    
+    this.currentOperand = ''
+    this.previousOperand = ''
+    this.operation = undefined
   }
   delete() {
 
